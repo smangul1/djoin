@@ -1,0 +1,32 @@
+wtdbg:
+
+/u/home/a/akarlsbe/wtdbg2.pl -t 16 -x rs -g 4.6m -o dbg reads.fa.gz
+
+new_file_name = strainTaxid +"_" + distinct_database_count + "_contributing_databases_" + contributing_databases
+
+generate_assembly_command_wtdbg2 = "/u/home/a/akarlsbe/wtdbg2 -x rs -g " + approx_genome_length + " -i "+ files + " -t 16 -fo " + new_file_name + "\n"
+
+generate_consensus_command_wtpoa = /u/home/a/akarlsbe/wtpoa-cns -t 16 -i new_file_name.ctg.lay.gz -fo new_file_name.raw.fa
+
+
+/u/home/a/akarlsbe/wtdbg2/wtdbg2 -x rs -g 120313375 -i /u/home/a/akarlsbe/scratch/fungi/ENSEMBLE/Puccinia_graminisug99.v1.dna.toplevel.fa /u/home/a/akarlsbe/scratch/fungi/1K/Pucgr2_AssemblyScaffolds_Repeatmasked.fasta /u/home/a/akarlsbe/scratch/fungi/FUNGIDB/FungiDB-41_PgraminisCRL75-36-700-3_Genome.fasta -t 16 -fo 56615_3_contributing_databases_ENSEMBLE_1K_FUNGIDB
+
+
+
+/u/home/a/akarlsbe/wtdbg2/wtpoa-cns -t 16 -i 56615_3_contributing_databases_ENSEMBLE_1K_FUNGIDB.ctg.lay.gz -fo 56615_3_contributing_databases_ENSEMBLE_1K_FUNGIDB.raw.fa
+
+
+
+interactive session: 
+qrsh -l h_data=24G
+
+# chmod +x contig_only_strain_assembly_wtdbg_shell_command_script.sh
+
+# qsub -m beas -cwd -V -N wtdbg_assembly -l h_data=12G,highp,time=24:00:00 /u/home/a/akarlsbe/scratch/djoin/wtdbg_shell_scripts/contig_only_strain_assembly_wtdbg_shell_command_script.sh
+
+
+cat /u/home/a/akarlsbe/scratch/fungi/ENSEMBLE/Coccidioides_posadasii_c735_delta_sowgp.JCVI-cpa1-1.0.dna.toplevel.fa /u/home/a/akarlsbe/scratch/fungi/FUNGIDB/FungiDB-41_CposadasiiC735deltSOWgp_Genome.fasta > /u/home/a/akarlsbe/scratch/strain_contig_only_assemblies/222929/strain_og_concat_222929.fa
+
+
+
+samtools view out.bam | grep -v -e 'XA:Z:' -e 'SA:Z:' | awk '{print $1,$2,$3,$4,$5,$6}'   | grep ctg5

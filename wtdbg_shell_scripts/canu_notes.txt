@@ -1,0 +1,14 @@
+
+canu-1.8/*/bin/canu -p ecoli -d ecoli-oxford genomeSize=4.8m -nanopore-raw oxford.fasta
+
+scp Anaconda3-2019.03-Linux-x86_64.sh akarlsbe@hoffman2.idre.ucla.edu:scratch
+
+/u/home/a/akarlsbe/anaconda3/bin/canu -p ecoli -d ecoli-oxford genomeSize=4.8m -nanopore-raw oxford.fasta useGrid=false ovsMethod=forceparallel
+
+/u/home/a/akarlsbe/anaconda3/bin/canu -p ecoli -d ecoli-oxford genomeSize=4.8m -nanopore-raw oxford.fasta gridEngineMemoryOption="-l m_mem_free_n7=MEMORY" gridEngineThreadsOption="-pe shared THREADS"
+
+
+oli-oxford genomeSize=4.8m -nanopore-raw oxford.fasta useGrid=falsep ecoli -d eco ovsMethod=forceparallel
+
+
+

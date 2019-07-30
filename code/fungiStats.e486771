@@ -1,0 +1,4 @@
+  File "/work/UGE/8.6.4/n7426/job_scripts/486771", line 2
+    . /u/local/Modules/default/init/modules.sh
+    ^
+SyntaxError: invalid syntax
